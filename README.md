@@ -5,6 +5,8 @@
 
 [![arXiv](https://img.shields.io/badge/Arxiv-2503.10624-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2503.10624)
 [![Home Page](https://img.shields.io/badge/Project-Website-green.svg)](https://boqian-li.github.io/ETCH/) 
+[![X](https://img.shields.io/badge/@Boqian%20Li-black?logo=X)](https://x.com/Boqian_Li_/status/1908467186122817642)
+[![youtube](https://img.shields.io/badge/Video-E33122?logo=Youtube)](https://youtu.be/8_3DdW0cZqM)
 
 [Boqian Li](https://boqian-li.github.io/), 
 [Haiwen Feng](https://havenfeng.github.io/), 
