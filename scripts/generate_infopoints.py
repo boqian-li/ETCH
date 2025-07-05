@@ -288,8 +288,8 @@ if __name__ == "__main__":
 
 
     # mode == 0
-    parser.add_argument('-f_m', '--folder_model', default="datafolder/4D-Dress/data_processed/model", help='Path to the folder containing input scan obj files', type=str)
-    parser.add_argument('-f_s', '--folder_smpl', default="datafolder/4D-Dress/data_processed/smplh", help='Path to the folder containing input smplh obj files', type=str)
+    parser.add_argument('-f_m', '--folder_model', default="datafolder/4D-DRESS/data_processed/model", help='Path to the folder containing input scan obj files', type=str)
+    parser.add_argument('-f_s', '--folder_smpl', default="datafolder/4D-DRESS/data_processed/smplh", help='Path to the folder containing input smplh obj files', type=str)
     parser.add_argument('-f_p', '--folder_ply', default="datafolder/gt_4D-Dress_data/ply", help='folder containing output ply', type=str)
     parser.add_argument('-f_n', '--folder_npz', default="datafolder/gt_4D-Dress_data/npz", help='folder containing output npz', type=str)
 
@@ -303,7 +303,7 @@ if __name__ == "__main__":
         assert args.mode == 0
 
 
-    print("\n==== Please make sure you are using env: conver_smpl for trimesh acceleration !!! ====\n")
+    # print("\n==== Please make sure you are using env: conver_smpl for trimesh acceleration !!! ====\n")
     main(args)
 
 

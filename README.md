@@ -92,4 +92,4 @@ CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path model_path
 ```
 
 ## Pretrained Model
-Please download the pretrained model used in the paper from [here](https://drive.google.com/file/d/1-_0000000000000000000000000000000000000000/view?usp=sharing). 
+Please download the pretrained model used in the paper from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing). 

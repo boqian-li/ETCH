@@ -272,7 +272,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--activated_ids_path", type=str, default="datafolder/useful_data_4d-dress/val_ids_sampled_ratio10.pkl", help="activated ids") #  # datafolder/useful_data_cape/val_ids.pkl 
     parser.add_argument("--scale_magnitude", type=int, default=10, help="scale for magnitude")
-    parser.add_argument('--markerset_path', default="datafolder/useful_data_cape/superset_smpl.json", type=str)
+    parser.add_argument('--markerset_path', default="datafolder/useful_data_4d-dress/superset_smpl.json", type=str)
     parser.add_argument("--seed", type=int, default=1, metavar="S", help="random seed (default: 1)")
     parser.add_argument("--infopoints_dir", type=str, default="datafolder/gt_4D-Dress_data/npz", help="data dir path of npy files") # datafolder/gt_CAPE_data/npz # 
     parser.add_argument("--scan_dir", type=str, default="datafolder/4D-DRESS/data_processed/model", help="data dir path of obj files") # datafolder/CAPE_reorganized/cape_release/model_reorganized # 

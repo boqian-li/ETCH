@@ -25,6 +25,7 @@ dependencies:
       - yacs
       - smplx
       - webdataset
+      - embreex
       - -e external/vgtk/vgtk
       - -e external/vgtk
       - -e external/pointops
