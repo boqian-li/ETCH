@@ -49,7 +49,7 @@ cd ../..
     ```bash
     python scripts/get_splitted_ids_{datasetname}.py
     ```
-3. For body_models, please download with [this link](https://drive.google.com/file/d/1JNFk4OGfDkgE9WdJb1D1zGaECix8XpKV/view?usp=sharing).
+3. For body_models, please download with [this link](https://drive.google.com/file/d/1JNFk4OGfDkgE9WdJb1D1zGaECix8XpKV/view?usp=sharing), and place it under the `datafolder/` folder.
 
 4. please note that before the above processes: 
 
@@ -82,13 +82,16 @@ please refer to the `datafolder` folder for more details.
 ## Training
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python src/train.py --batch_size 2 --i datasetname_settingname
+CUDA_VISIBLE_DEVICES=0 python src/train.py --batch_size 2 --i datasetname_settingname 
+# batch_size should <= num_data, if you just have the sample data, you can set batch_size to 1
 ```
 
 ## Evaluation
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path model_path --i datasetname_settingname
+CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path path_to_pretrained_model --i datasetname_settingname
+
+# please note that the train_ids has no overlap with the val_ids, the sample data is from train_ids, so if you want to test the pretrained model on the sample data, you should set the activated_ids_path to the train_ids.pkl file for successful selection.
 ```
 
 ## Pretrained Model
