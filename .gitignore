@@ -1,0 +1,45 @@
+# large file
+*.pth
+datafolder/body_models/
+
+# # symbolic link
+# /datafolder
+
+# pip
+*.egg-info/
+.eggs/
+*.egg
+.Python
+build/
+dist/
+
+# cache
+__pycache__/
+*.pyc
+*.pyo
+
+# compiling files
+*.so
+*.dll
+*.dylib
+*.lib
+*.o
+*.a
+
+
+# IDE
+.vscode/
+
+# config 
+*.env
+*.ini
+
+# log 
+all_experiments/
+
+# test-folders
+try_geodesic_distance/*
+!try_geodesic_distance/test.py
+
+# external
+external/theseus/
