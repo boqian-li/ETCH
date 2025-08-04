@@ -1,0 +1,8 @@
+[submodule "external/RobustSkinWeightsTransferCode"]
+	path = external/RobustSkinWeightsTransferCode
+	url = git@github.com:XiaobenLi00/RobustSkinWeightsTransferCode.git
+	branch = etch-animate
+[submodule "external/smplx"]
+	path = external/smplx
+	url = git@github.com:XiaobenLi00/smplx.git
+	branch = etch-animate

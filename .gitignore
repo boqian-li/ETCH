@@ -1,6 +1,7 @@
 # large file
 *.pth
 datafolder/body_models/
+output/
 
 # # symbolic link
 # /datafolder

@@ -1,0 +1,31 @@
+name: etch
+
+channels:
+  - nvidia
+  - pytorch
+  - conda-forge
+dependencies:
+  - python==3.10.*
+  - pip
+  - git
+  - joblib
+  - numpy
+  - plyfile
+  - pre-commit
+  - pyg::pytorch-scatter
+  - pytorch::pytorch=2.*=*cuda*
+  - pytorch::pytorch-cuda=11.8
+  - scipy
+  - scikit-learn
+  - tqdm
+  - trimesh
+  - wandb
+  - loguru
+  - pip:
+      - yacs
+      - smplx
+      - webdataset
+      - embreex
+      - -e external/vgtk/vgtk
+      - -e external/vgtk
+      - -e external/pointops
