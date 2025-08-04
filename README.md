@@ -19,11 +19,14 @@ International Conference on Computer Vision 2025 (ICCV 2025)
 [Yuliang Xiu](https://xiuyuliang.cn/) 
 </h4>
 
-This repository is the official implementation of ETCH, a novel pipeline that estimates cloth-to-body surface mapping through locally approximate SE(3) equivariance, encoding tightness as displacement vectors from the cloth surface to the underlying body.
+This repository is the official implementation of ETCH, a novel body fitting pipeline that estimates cloth-to-body surface mapping through locally approximate SE(3) equivariance, encoding tightness as displacement vectors from the cloth to the underlying body.
 
-<h2 align="center">
-This is dev branch.
-</h2>
+![image](assets/image.png)
+
+## News: 
+- 2025-08-04: We release the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
+
+- 2025-08-04: We release the code for `ETCH`, please feel free to have a try!
 
 
 
@@ -51,9 +54,9 @@ cd ../..
     ```
 3. For body_models, please download with [this link](https://drive.google.com/file/d/1JNFk4OGfDkgE9WdJb1D1zGaECix8XpKV/view?usp=sharing), and place it under the `datafolder/` folder.
 
-4. please note that before the above processes: 
+4. please note that before the above processes, there are some preprocessing steps on the original data: 
 
-    for `4D-Dress` dataset, we apply zero-translation `mesh.apply_translation(-translation)` to the scan and the body model; 
+    for `4D-Dress` dataset, we apply zero-translation `mesh.apply_translation(-translation)` to the original scan and the body model; 
     
     for `CAPE` dataset, we used the processed meshes extracted from [PTF](https://github.com/taconite/PTF), in which we noticed that the SMPL body meshes are marginally different from the original SMPL body meshes but more precise.
 
@@ -96,3 +99,24 @@ CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path path_to_pr
 
 ## Pretrained Model
 Please download the pretrained model used in the paper from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing). 
+
+
+## 🔥 All-in-One Model 🔥
+We provide the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
+
+For demo inference, you can use the following command:
+```bash
+CUDA_VISIBLE_DEVICES=0 python src/inference_demo.py --scan_path path_to_scan_obj_file --gender gender --model_path path_to_allinone_pretrained_model
+```
+
+Please note that during the training of `All-in-One` model and in the `inference_demo.py` file, we centering the scan as input, and re-center the predicted SMPL mesh to the original scan.
+For more details, please refer to the `src/inference_demo.py` file.
+
+We also provide the animation function, which can be used to animate the scan with the predicted SMPL mesh. please refer to the `src/animation.py` file for more details.
+
+
+
+
+
+
+

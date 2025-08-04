@@ -20,9 +20,9 @@
 #     :param coords: verts x 3 barycentric weights array (torch.Tensor)
 #     :return: verts x d weighted matrix (torch.Tensor)
 #     """
-#     # 在 PyTorch 中使用 unsqueeze 代替 np.newaxis
+#     # Use unsqueeze instead of np.newaxis in PyTorch
 #     t = val * coords.unsqueeze(-1)
-#     ret = t.sum(dim=1)  # 使用 dim 参数代替 axis
+#     ret = t.sum(dim=1)  # Use dim parameter instead of axis
 #     return ret
 
 
@@ -30,8 +30,8 @@
 #     '''
 #     inner_points: shape(M, 3)
 #     part_labels: shape(M)
-#     eps: float, DBSCAN 中的最大距离参数
-#     min_samples: int, DBSCAN 中的最小样本数参数
+#     eps: float, maximum distance parameter in DBSCAN
+#     min_samples: int, minimum sample number parameter in DBSCAN
 #     '''
 
 #     selected_indices = torch.zeros(inner_points.shape[0], dtype=torch.bool, device=inner_points.device)
@@ -46,20 +46,20 @@
 
 #         label_points = inner_points[label_mask].detach().cpu().numpy()
 
-#         # 使用 DBSCAN 聚类
+#         # Use DBSCAN clustering
 #         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(label_points)
 #         labels = clustering.labels_
 
-#         # 找到最大簇
+#         # Find the largest cluster
 #         unique_labels, counts = np.unique(labels, return_counts=True)
 #         max_cluster_label = unique_labels[np.argmax(counts)]
 
-#         # 选择最大簇中的点
-#         if max_cluster_label != -1:  # -1 表示噪声点
+#         # Select points in the largest cluster
+#         if max_cluster_label != -1:  # -1 indicates noise points
 #             max_cluster_indices = np.where(labels == max_cluster_label)[0]
-#             # 将 max_cluster_indices 转换为全局索引
+#             # Convert max_cluster_indices to global indices
 #             global_indices = torch.nonzero(label_mask, as_tuple=True)[0][max_cluster_indices]
-#             # 更新 selected_indices
+#             # Update selected_indices
 #             selected_indices[global_indices] = True
 
 #     return torch.where(selected_indices)[0]
@@ -96,7 +96,7 @@
 #     all_seginfo: dict
 #     '''
 
-#     # 初始化 SMPL 模型
+#     # Initialize SMPL model
 #     model_path = 'datafolder/body_models/smpl/neutral/SMPL_NEUTRAL_10pc_rmchumpy.pkl'  
 #     smpl_model = SMPL(model_path=model_path, create_global_orient=False, create_body_pose=False,
 #                       create_betas=False, create_transl=False).to(args.device) 
@@ -112,7 +112,7 @@
     
 #     # visualize correspondence between inner points and anchored points
 #     # if 1 == 0:
-#     #     # 通过 SMPL 模型计算顶点
+#     #     # Calculate vertices through SMPL model
 #     #     smpl_output = smpl_model()
 #     #     smpl_vertices = smpl_output.vertices.squeeze() # shape(V, 3)
 #     #     vertices_coords = smpl_vertices[vertices_indices] # shape(M, 3, 3)
@@ -121,8 +121,8 @@
 #     #     save_points_with_vector(inner_points.detach().cpu().numpy(), inner_points.detach().cpu().numpy() - anchored_points.detach().cpu().numpy() - np.array([[1, 0, 0]]*inner_points.shape[0]), f'data/vis/{id_}_inner_points_error.ply')
 
 
-#     # 初始化优化变量
-#     ## 手部的pose不优化; 手腕的pose优化，但是算loss的时候它只会对前臂的扭曲造成影响，而手腕处的mesh本身并不参与 loss计算
+#     # Initialize optimization variables
+#     ## Hand pose is not optimized; wrist pose is optimized, but when calculating loss it only affects forearm twist, and wrist mesh itself does not participate in loss calculation
 #     pose_optimized = torch.nn.Parameter(torch.zeros((1, (smpl_model.NUM_BODY_JOINTS - 0) * 3)).to(args.device), requires_grad=True)
 #     # pose_unoptimized = torch.nn.Parameter(torch.zeros((1, 2 * 3)).to(args.device), requires_grad=False)
 
@@ -130,7 +130,7 @@
 #     global_orient = torch.nn.Parameter(torch.zeros((1, 3)).to(args.device), requires_grad=True)
 #     translation = torch.nn.Parameter(torch.zeros((1, 3)).to(args.device), requires_grad=True)
 
-#     # 获取需要优化的参数
+#     # Get parameters to optimize
 #     parameters = [
 #         shape,
 #         global_orient,
@@ -138,7 +138,7 @@
 #         translation
 #     ]
 
-#     # 使用 Adam 优化器
+#     # Use Adam optimizer
 #     optimizer = torch.optim.Adam(parameters, lr=lr)
 
 #     option = 0
@@ -146,13 +146,13 @@
 #     # if mode == "pred":
 #     if option == 0:
 #         print("Using clustering to filter inner points")
-#         # 使用聚类筛选内点
+#         # Use clustering to filter inner points
 #         inlier_points_indices = filter_points_by_clustering(args, inner_points, part_labels)
 #         print(f"filter ratio: {inlier_points_indices.shape[0] / inner_points.shape[0]}")
 #     elif option == 1:
 #         assert 1 == 0
 #         print("Using correspondence to filter inner points")
-#         # 使用correspondence筛选内点
+#         # Use correspondence to filter inner points
 #         inlier_points_indices = filter_points_by_correspondence(args, part_labels, vertices_indices)
 #         print(f"filter ratio: {inlier_points_indices.shape[0] / inner_points.shape[0]}")
 #     else:

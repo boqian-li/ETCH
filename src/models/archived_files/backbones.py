@@ -142,21 +142,21 @@
 #     def __init__(self, input_dim=64, hidden_dim=128, output_dim=1):
 #         super(SimpleMLP, self).__init__()
         
-#         # 定义一个简单的全连接网络
+#         # Define a simple fully connected network
 #         self.mlp = nn.Sequential(
-#             nn.Linear(input_dim, hidden_dim),  # 输入层到隐藏层
-#             nn.ReLU(),                         # 激活函数
-#             nn.Linear(hidden_dim, hidden_dim),  # 隐藏层
-#             nn.ReLU(),                         # 激活函数
-#             nn.Linear(hidden_dim, output_dim),  # 隐藏层到输出层
-#             nn.Softplus()                      # Softplus 确保输出为正数
+#             nn.Linear(input_dim, hidden_dim),  # Input layer to hidden layer
+#             nn.ReLU(),                         # Activation function
+#             nn.Linear(hidden_dim, hidden_dim),  # Hidden layer
+#             nn.ReLU(),                         # Activation function
+#             nn.Linear(hidden_dim, output_dim),  # Hidden layer to output layer
+#             nn.Softplus()                      # Softplus ensures positive output
 #         )
     
 #     def forward(self, x):
-#         B, N, C = x.shape  # 输入形状为 (B, N, C)
-#         x = x.view(B * N, C)  # 展平为 (B*N, C)
-#         output = self.mlp(x)  # 经过 MLP 计算
-#         return output.view(B, N, 1)  # 重新 reshape 为 (B, N, 1)
+#         B, N, C = x.shape  # Input shape is (B, N, C)
+#         x = x.view(B * N, C)  # Flatten to (B*N, C)
+#         output = self.mlp(x)  # Pass through MLP computation
+#         return output.view(B, N, 1)  # Reshape back to (B, N, 1)
     
 
 # class ResnetBlockFC(nn.Module):

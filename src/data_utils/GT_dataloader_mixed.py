@@ -102,7 +102,7 @@ def subdivide(mesh):
 
 
 def convert_geodesic_distances_to_confidence(geodesic_distances):
-    sharpness_factor = 10.0  # 控制尖锐度的因子
+    sharpness_factor = 10.0  # Factor controlling sharpness
     exponential_values = np.exp(-sharpness_factor * geodesic_distances)
     return exponential_values
 
@@ -173,7 +173,7 @@ class GTDataset(Dataset):
         scan_mesh = trimesh.load_mesh(scan_path, process=False, maintain_order=True)
         smpl_mesh = trimesh.load_mesh(smpl_path, process=False, maintain_order=True)
 
-        # 1. 对 scan_mesh 和 smpl_mesh 进行中心化，除了mesh，只需要对info_points进行中心化
+        # 1. Center scan_mesh and smpl_mesh, for mesh only need to center info_points
         scan_vertices = scan_mesh.vertices
         scan_min_xyz = np.min(scan_vertices, axis=0)
         scan_max_xyz = np.max(scan_vertices, axis=0)
@@ -184,15 +184,15 @@ class GTDataset(Dataset):
 
         info_points = info_points - scan_center
         if self.aug:
-            # 2. 对scan_mesh 和 smpl_mesh 以原点绕y轴进行随机旋转，同时对info_points和info_vectors进行相同的旋转
-            # 随机生成一个绕y轴的旋转角度
+            # 2. Randomly rotate scan_mesh and smpl_mesh around y-axis at origin, simultaneously rotate info_points and info_vectors
+            # Generate a random rotation angle around y-axis
             theta = np.random.uniform(0, 2 * np.pi)
             cos_theta = np.cos(theta)
             sin_theta = np.sin(theta)
             R = np.array(
                 [[cos_theta, 0, sin_theta], [0, 1, 0], [-sin_theta, 0, cos_theta]]
             )
-            # 对scan_mesh, smpl_mesh, info_points, info_vectors进行旋转
+            # Rotate scan_mesh, smpl_mesh, info_points, info_vectors
             scan_mesh.vertices = scan_mesh.vertices @ R.T
             smpl_mesh.vertices = smpl_mesh.vertices @ R.T
             info_points = info_points @ R.T
@@ -212,7 +212,7 @@ class GTDataset(Dataset):
             smpl_mesh, sample_points
         )
 
-        # 每个sample point对应的vector，要么使用满足阈值的最近info point对应的vector，要么通过最邻近smpl_mesh上的点求得
+        # For each sample point, the corresponding vector either uses the vector from the nearest info point that meets the threshold, or is calculated from the closest point on smpl_mesh
         threshold = 0.01
         vectors = np.zeros((self.num_point, 3), dtype=np.float64)
 

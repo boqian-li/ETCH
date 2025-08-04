@@ -3,7 +3,7 @@ import os
 import numpy as np
 import torch
 from models.models_pointcloud import GT_network_equiv
-from data_utils.GT_dataloader_center import GTDataset
+# from data_utils.GT_dataloader_center import GTDataset
 from torch.utils.data import DataLoader
 import trimesh
 import json
@@ -70,8 +70,8 @@ def main():
     parser.add_argument("--scan_path", type=str, required=True, help="Path to input scan OBJ file")
     parser.add_argument("--gender", type=str, default="neutral", choices=["neutral", "male", "female"], 
                        help="Gender of the subject")
-    parser.add_argument("--model_path", type=str, default="all_experiments/experiments/EPN_layer_2_radius_0.4_aug_so3_num_point_5000/mix_1_full/checkpoints/model_epochs_00000032.pth", help="Path to trained model")
-    parser.add_argument("--markerset_path", default="datafolder/useful_data_cape/superset_smpl.json", 
+    parser.add_argument("--model_path", type=str, default="", help="Path to trained model")
+    parser.add_argument("--markerset_path", default="datafolder/useful_data_4d-dress/superset_smpl.json", 
                        type=str, help="Path to markerset JSON file")
     parser.add_argument("--output_folder", type=str, default="output", help="Output directory")
     parser.add_argument("--num_point", type=int, default=5000, help="Number of points to sample from scan")
@@ -113,8 +113,21 @@ def main():
     scan_name = os.path.splitext(os.path.basename(args.scan_path))[0]
     output_path = os.path.join(args.output_folder, f"{scan_name}_pred_smpl.obj")
     final_smpl_mesh.export(output_path)
+
+    # save smpl info
+    for data in smpl_info:
+        print(data.shape)
+
+    np.savez(os.path.join(args.output_folder, f"{scan_name}_output_smpl_info.npz"), 
+                         body_pose=smpl_info[0][0, :21, :], # shape(21, 3)
+                         hand_pose=smpl_info[0][0, 21:23, :], # shape(2, 3)
+                         betas=smpl_info[1][0], # shape(10)
+                         global_orient=smpl_info[2][0], # shape(3)
+                         transl=smpl_info[3][0], # shape(3)
+                         joints=smpl_info[4][0]) # shape(45, 3)
+
     
-    print(f"Predicted SMPL mesh saved to: {output_path}")
+    print(f"Predicted SMPL mesh saved to: {os.path.join(args.output_folder, f'{scan_name}_pred_smpl.obj')}, smpl info saved to: {os.path.join(args.output_folder, f'{scan_name}_output_smpl_info.npz')}")
 
 if __name__ == "__main__":
     main()

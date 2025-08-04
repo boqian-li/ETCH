@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 
     if args.parallel:
-        # 取得文件夹中的所有数据文件
+        # Get all data files in the folder
         all_args = []
 
         for name in os.listdir(params_dir):

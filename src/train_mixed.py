@@ -46,20 +46,20 @@ def vis_loss(all_epochs_losses, log_dir):
         plt.title(f"{name} Loss")
         plt.legend()
 
-        # 动态设置 y 轴范围
+        # Dynamically set y-axis range
         min_loss = 0
         max_n_loss = sorted(all_epochs_losses[name], reverse=True)[
             min(0, len(all_epochs_losses[name]) - 1)
         ]
-        margin = (max_n_loss - min_loss) * 0.1  # 增加 10% 的边距
+        margin = (max_n_loss - min_loss) * 0.1  # Add 10% margin
         plt.ylim(min_loss, max_n_loss + margin)
         plt.xlim(0, len(all_epochs_losses[name]))
 
-        # 获取最后一个点的坐标
+        # Get coordinates of the last point
         last_epoch = len(all_epochs_losses[name]) - 1
         last_loss = all_epochs_losses[name][-1]
 
-        # 标注最后一个点的损失值
+        # Annotate the loss value of the last point
         plt.annotate(
             f"{last_loss:.6f}",
             xy=(last_epoch, last_loss),
@@ -302,7 +302,7 @@ def main():
         metavar="N",
         help="number of epochs to train (default: 10)",
     )
-    # lr 绝对不要调大除非你知道你在做什么，1e-3试过，loss会很波动，结果也不好。
+    # Do not increase lr unless you know what you're doing, 1e-3 has been tried, loss will be very volatile and results are poor.
     parser.add_argument(
         "--lr", type=float, default=1e-4, metavar="N", help="learning rate"
     )
@@ -427,7 +427,7 @@ def main():
 
     # indices = torch.randperm(4000)[:100]
     train_dataset_4d_dress = GTDataset(args)
-    # 随机选取1/6的数据
+    # Randomly select 1/6 of the data
     # num_total = len(full_train_dataset_4d_dress)
     # num_subset = max(1, num_total // 6)
     # subset_indices = torch.randperm(num_total)[:num_subset]

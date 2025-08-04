@@ -57,7 +57,7 @@ def save_points_with_vector(hit_points, vectors, file_path):
             f.write(f"{i} {num_points + i}\n")
 
 def random_rotate_point_cloud(batch_data_point_cloud: torch.Tensor):
-    assert 0==1, "this is a test, please ignore it; 应该在global orientation中旋转"
+    assert 0==1, "this is a test, please ignore it; should rotate in global orientation"
     """ Randomly rotate the point clouds to augment the dataset
         rotation is per shape based along up direction
         Input:

@@ -123,7 +123,7 @@ def weights_transfer(source_mesh, target_mesh, lbs_weights):
 
 
 def animate():
-    model_path = "path to SMPL neutral model"
+    model_path = "datafolder/body_models/smpl/neutral/SMPL_NEUTRAL_10pc_rmchumpy.pkl"
     smpl_model = SMPL(
         model_path=model_path,
     )
