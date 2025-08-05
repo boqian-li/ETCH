@@ -1,11 +1,11 @@
 <h2 align="center"> <a href="https://arxiv.org/abs/2503.10624">ETCH: Generalizing Body Fitting to Clothed Humans via Equivariant Tightness</a>
 </h2>
 
-<h3 align="center">
-International Conference on Computer Vision 2025 (ICCV 2025)
-</h3>
+<h2 align="center">
+🏆 ICCV 2025 Highlight Paper 🏆
+</h2>
 
-<h4 align="center">
+<h3 align="center">
 
 [![arXiv](https://img.shields.io/badge/Arxiv-2503.10624-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2503.10624)
 [![Home Page](https://img.shields.io/badge/Project-Website-green.svg)](https://boqian-li.github.io/ETCH/) 
@@ -17,20 +17,24 @@ International Conference on Computer Vision 2025 (ICCV 2025)
 [Zeyu Cai](https://github.com/zcai0612), 
 [Michael J. Black](https://ps.is.mpg.de/person/black), 
 [Yuliang Xiu](https://xiuyuliang.cn/) 
-</h4>
+</h3>
 
+
+![image](assets/teasor.png)
 This repository is the official implementation of ETCH, a novel body fitting pipeline that estimates cloth-to-body surface mapping through locally approximate SE(3) equivariance, encoding tightness as displacement vectors from the cloth to the underlying body.
 
-![image](assets/image.png)
+## News 🚩
+- [2025-08-04] We release the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
 
-## News: 
-- 2025-08-04: We release the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
+- [2025-08-04] We release the code for `ETCH`, please feel free to have a try!
 
-- 2025-08-04: We release the code for `ETCH`, please feel free to have a try!
+## Overview
+![video](assets/overview.mp4)
+Our key novelty is modeling cloth-to-body SE(3)-equivariant tightness vectors for clothed humans, abbreviated as ETCH, which resembles ``etching'' from the outer clothing down to the inner body. 
 
+Following this outer-to-inner mapping, ETCH regresses sparse body markers, simplifying clothed human fitting into an inner-body marker fitting task.
 
-
-## Environment Setup
+## Environment Setup ⚙️
 
 ```bash
 conda env create -f environment.yml
@@ -41,7 +45,7 @@ pip install -e .
 cd ../..
 ```
 
-## Data Preparation
+## Data Preparation 📃 
 0. please note that we placed data samples in the `datafolder` folder for convenience. 
 1. Generate Anchor Points with Tightness Vectors (for training)
     ```bash
@@ -60,7 +64,7 @@ cd ../..
     
     for `CAPE` dataset, we used the processed meshes extracted from [PTF](https://github.com/taconite/PTF), in which we noticed that the SMPL body meshes are marginally different from the original SMPL body meshes but more precise.
 
-## Dataset Organization
+## Dataset Organization 📂
 The dataset folder tree is like:  
 ```bash
 datafolder/
@@ -82,14 +86,14 @@ datafolder/
 please refer to the `datafolder` folder for more details. 
 
 
-## Training
+## Training 🚀
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python src/train.py --batch_size 2 --i datasetname_settingname 
 # batch_size should <= num_data, if you just have the sample data, you can set batch_size to 1
 ```
 
-## Evaluation
+## Evaluation 📊
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path path_to_pretrained_model --i datasetname_settingname
@@ -97,7 +101,7 @@ CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path path_to_pr
 # please note that the train_ids has no overlap with the val_ids, the sample data is from train_ids, so if you want to test the pretrained model on the sample data, you should set the activated_ids_path to the train_ids.pkl file for successful selection.
 ```
 
-## Pretrained Model
+## Pretrained Model used in the paper 
 Please download the pretrained model used in the paper from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing). 
 
 
@@ -114,7 +118,43 @@ For more details, please refer to the `src/inference_demo.py` file.
 
 We also provide the animation function, which can be used to animate the scan with the predicted SMPL mesh. please refer to the `src/animation.py` file for more details.
 
+## Citation
 
+```bibtex
+@inproceedings{li2025etch,
+  title     = {{ETCH: Generalizing Body Fitting to Clothed Humans via Equivariant Tightness}},
+  author    = {Li, Boqian and Feng, Haiwen and Cai, Zeyu and Black, Michael J. and Xiu, Yuliang},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2025}
+}
+```
+
+## Acknowledgments
+We thank [Marilyn Keller](https://marilynkeller.github.io/) for the help in Blender rendering, [Brent Yi](https://brentyi.github.io/) for fruitful discussions, [Ailing Zeng](https://ailingzeng.site/) and [Yiyu Zhuang](https://github.com/yiyuzhuang) for HuGe100K dataset, [Jingyi Wu](https://github.com/wjy0501) and [Xiaoben Li](https://xiaobenli00.github.io/) for their help during rebuttal and building this open-source project, and the members of [Endless AI Lab](http://endless.do/) for their help and discussions. This work is funded by the Research Center for Industries of the Future (RCIF) at Westlake University, the Westlake Education Foundation. [Yuliang Xiu](https://xiuyuliang.cn/) also received funding from the Max Planck Institute for Intelligent Systems.
+
+Here are some great resources we benefit from:
+
+- [ArtEq](https://github.com/HavenFeng/ArtEq) and [EPN_PointCloud](https://github.com/nintendops/EPN_PointCloud) for the Equivariant Point Network.
+- [theseus](https://github.com/facebookresearch/theseus) for the implementation of Levenberg–Marquardt algorithm.
+- [smplx](https://github.com/vchoutas/smplx) for the SMPL body model.
+- [point-transformer](https://github.com/POSTECH-CVLab/point-transformer) for the Point Transformer network.
+
+## Contributors
+Kudos to all of our amazing contributors! This open-source project is made possible by the contributions of the following individuals:
+
+<a href="https://github.com/boqian-li/ETCH/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=boqian-li/ETCH" />
+</a>
+
+## License
+ETCH is released under the [MIT License](LICENSE).
+
+## Disclosure
+While MJB is a co-founder and Chief Scientist at Meshcapade, his research in this project was performed solely at, and funded solely by, the Max Planck Society.
+
+
+## Contact
+For technical questions, please contact [Boqian Li](boqianlihuster@gmail.com).
 
 
 
