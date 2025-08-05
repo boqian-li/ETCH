@@ -29,7 +29,7 @@ This repository is the official implementation of ETCH, a novel body fitting pip
 - [2025-08-04] We release the code for `ETCH`, please feel free to have a try!
 
 ## Overview
-![video](assets/overview.mp4)
+![video](https://github.com/user-attachments/assets/747854b1-ae3a-4652-a9cc-7db84bc50fb4)
 Our key novelty is modeling cloth-to-body SE(3)-equivariant tightness vectors for clothed humans, abbreviated as ETCH, which resembles ``etching'' from the outer clothing down to the inner body. 
 
 Following this outer-to-inner mapping, ETCH regresses sparse body markers, simplifying clothed human fitting into an inner-body marker fitting task.
@@ -154,7 +154,7 @@ While MJB is a co-founder and Chief Scientist at Meshcapade, his research in thi
 
 
 ## Contact
-For technical questions, please contact [Boqian Li](boqianlihuster@gmail.com).
+For technical questions, please contact Boqian Li via boqianlihuster@gmail.com.
 
 
 
