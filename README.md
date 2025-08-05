@@ -141,6 +141,7 @@ Here are some great resources we benefit from:
 - [theseus](https://github.com/facebookresearch/theseus) for the implementation of Levenberg–Marquardt algorithm.
 - [smplx](https://github.com/vchoutas/smplx) for the SMPL body model.
 - [point-transformer](https://github.com/POSTECH-CVLab/point-transformer) for the Point Transformer network.
+- [Robust Weight Transfer](https://github.com/rin-23/RobustSkinWeightsTransferCode) for SMPL-based animation.
 
 ## Contributors
 Kudos to all of our amazing contributors! This open-source project is made possible by the contributions of the following individuals:
