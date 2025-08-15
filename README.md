@@ -24,6 +24,8 @@
 This repository is the official implementation of ETCH, a novel body fitting pipeline that estimates cloth-to-body surface mapping through locally approximate SE(3) equivariance, encoding tightness as displacement vectors from the cloth to the underlying body.
 
 ## News 🚩
+- [2025-08-15] All Pretrained Models are also available at [huggingface](https://huggingface.co/Boqian-Li/ETCH_all_in_one) now!
+
 - [2025-08-04] We release the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
 
 - [2025-08-04] We release the code for `ETCH`, please feel free to have a try!
@@ -105,11 +107,11 @@ CUDA_VISIBLE_DEVICES=0 python src/eval.py --batch_size 3 --model_path path_to_pr
 ```
 
 ## Pretrained Model used in the paper 
-Please download the pretrained model used in the paper from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing). 
+Please download the pretrained model used in the paper from [huggingface](https://huggingface.co/Boqian-Li/ETCH_all_in_one) or [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing). 
 
 
 ## 🔥 All-in-One Model 🔥
-We provide the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
+We provide the `All-in-One` model, which is trained on the `4D-Dress` dataset, `CAPE` dataset, and Generative dataset, totally 94501 samples. Please download the all-in-one model from [huggingface](https://huggingface.co/Boqian-Li/ETCH_all_in_one) or [here](https://drive.google.com/drive/folders/14zGMkmC580VLNgeUBFtM6FP8QX415VAa?usp=sharing).
 
 For demo inference, you can use the following command:
 ```bash
