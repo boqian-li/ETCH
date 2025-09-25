@@ -130,6 +130,7 @@ We also provide the animation function, which can be used to animate the scan wi
   title     = {{ETCH: Generalizing Body Fitting to Clothed Humans via Equivariant Tightness}},
   author    = {Li, Boqian and Feng, Haiwen and Cai, Zeyu and Black, Michael J. and Xiu, Yuliang},
   booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  month     = {October},
   year      = {2025}
 }
 ```
