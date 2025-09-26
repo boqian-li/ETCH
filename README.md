@@ -154,7 +154,9 @@ Kudos to all of our amazing contributors! This open-source project is made possi
 </a>
 
 ## License
-ETCH is released under the [MIT License](LICENSE).
+**Code License:** The ETCH source code is released under the [MIT License](LICENSE).
+
+**Pretrained Models License:** The pretrained models provided in this repository are for non-commercial use only. The release of pretrained models follows the same licensing terms as the datasets used for training. Please refer to the licensing terms of the [4D-Dress dataset](https://4d-dress.ait.ethz.ch/) and [CAPE dataset](https://cape.is.tue.mpg.de/) for more details.
 
 ## Disclosure
 While MJB is a co-founder and Chief Scientist at Meshcapade, his research in this project was performed solely at, and funded solely by, the Max Planck Society.

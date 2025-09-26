@@ -2,6 +2,10 @@ MIT License
 
 Copyright (c) 2025 Boqian Li
 
+IMPORTANT NOTICE: This license applies ONLY to the source code of the ETCH project. 
+The pretrained models provided in this repository are NOT covered by this license 
+and are subject to separate licensing terms as specified in the README.md file.
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
